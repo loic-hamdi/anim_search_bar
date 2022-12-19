@@ -89,7 +89,6 @@ class AnimSearchBar extends StatefulWidget {
 
     /// can add list of inputformatters to control the input
     this.inputFormatters,
-
     this.isOnRightSide = false,
   }) : super(key: key);
 
@@ -313,13 +312,13 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                 icon: widget.prefixIcon != null
                     ? toggle == 1
                         ? Icon(
-                            isOnRightSide ? Icons.arrow_forward_ios : Icons.arrow_back_ios,
+                            widget.isOnRightSide ? Icons.arrow_forward_ios : Icons.arrow_back_ios,
                             color: widget.textFieldIconColor,
                           )
                         : widget.prefixIcon!
                     : Icon(
                         toggle == 1
-                            ? isOnRightSide
+                            ? widget.isOnRightSide
                                 ? Icons.arrow_forward_ios
                                 : Icons.arrow_back_ios
                             : Icons.search,
