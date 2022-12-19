@@ -89,6 +89,8 @@ class AnimSearchBar extends StatefulWidget {
 
     /// can add list of inputformatters to control the input
     this.inputFormatters,
+
+    /// Change icon direction if search bar is on right side of the screen
     this.isOnRightSide = false,
   }) : super(key: key);
 
