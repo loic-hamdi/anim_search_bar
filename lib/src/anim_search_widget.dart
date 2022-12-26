@@ -43,6 +43,8 @@ class AnimSearchBar extends StatefulWidget {
   final EdgeInsets? padding;
   final double? height;
   final FocusNode? focusNode;
+  final IconData? iconSearch;
+  final double? iconSearchSize;
 
   const AnimSearchBar({
     Key? key,
@@ -104,6 +106,12 @@ class AnimSearchBar extends StatefulWidget {
 
     /// Focus node
     this.focusNode,
+
+    /// Change icon search
+    this.iconSearch,
+
+    /// Change icon search size
+    this.iconSearchSize,
   }) : super(key: key);
 
   @override
@@ -336,10 +344,10 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                             ? widget.isOnRightSide
                                 ? Icons.arrow_forward_ios
                                 : Icons.arrow_back_ios
-                            : Icons.search,
+                            : widget.iconSearch ?? Icons.search,
                         // search icon color when closed
                         color: toggle == 0 ? widget.searchIconColor : widget.textFieldIconColor,
-                        size: 20.0,
+                        size: widget.iconSearchSize ?? 20.0,
                       ),
                 onPressed: () {
                   setState(
