@@ -41,6 +41,7 @@ class AnimSearchBar extends StatefulWidget {
   final Function(String) onSubmitted;
   final bool isOnRightSide;
   final EdgeInsets? padding;
+  final double? height;
 
   const AnimSearchBar({
     Key? key,
@@ -96,6 +97,9 @@ class AnimSearchBar extends StatefulWidget {
 
     /// Change padding
     this.padding,
+
+    /// Change height
+    this.height,
   }) : super(key: key);
 
   @override
@@ -137,7 +141,8 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: widget.height ?? 100.0,
+      padding: widget.padding,
 
       ///if the rtl is true, search bar will be from right to left
       alignment: widget.rtl ? Alignment.centerRight : Alignment(-1.0, 0.0),
@@ -177,7 +182,7 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                 opacity: (toggle == 0) ? 0.0 : 1.0,
                 duration: Duration(milliseconds: 200),
                 child: Container(
-                  padding: widget.padding ?? EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     /// can add custom color or the color will be white
                     color: widget.color,
