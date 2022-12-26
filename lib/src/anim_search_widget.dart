@@ -40,6 +40,7 @@ class AnimSearchBar extends StatefulWidget {
   final bool boxShadow;
   final Function(String) onSubmitted;
   final bool isOnRightSide;
+  final EdgeInsets? padding;
 
   const AnimSearchBar({
     Key? key,
@@ -92,6 +93,9 @@ class AnimSearchBar extends StatefulWidget {
 
     /// Change icon direction if search bar is on right side of the screen
     this.isOnRightSide = false,
+
+    /// Change padding
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -173,7 +177,7 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                 opacity: (toggle == 0) ? 0.0 : 1.0,
                 duration: Duration(milliseconds: 200),
                 child: Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: widget.padding ?? EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     /// can add custom color or the color will be white
                     color: widget.color,
