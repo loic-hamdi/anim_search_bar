@@ -42,6 +42,7 @@ class AnimSearchBar extends StatefulWidget {
   final bool isOnRightSide;
   final EdgeInsets? padding;
   final double? height;
+  final FocusNode? focusNode;
 
   const AnimSearchBar({
     Key? key,
@@ -100,6 +101,9 @@ class AnimSearchBar extends StatefulWidget {
 
     /// Change height
     this.height,
+
+    /// Focus node
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -116,7 +120,7 @@ String textFieldValue = '';
 class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProviderStateMixin {
   ///initializing the AnimationController
   late AnimationController _con;
-  FocusNode focusNode = FocusNode();
+  final focusNode = FocusNode();
 
   @override
   void initState() {
@@ -262,7 +266,7 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                     ///Text Controller. you can manipulate the text inside this textField by calling this controller.
                     controller: widget.textController,
                     inputFormatters: widget.inputFormatters,
-                    focusNode: focusNode,
+                    focusNode: widget.focusNode ?? focusNode,
                     cursorRadius: Radius.circular(10.0),
                     cursorWidth: 2.0,
                     onChanged: (value) {
@@ -345,7 +349,7 @@ class _AnimSearchBarState extends State<AnimSearchBar> with SingleTickerProvider
                         toggle = 1;
                         setState(() {
                           ///if the autoFocus is true, the keyboard will pop open, automatically
-                          if (widget.autoFocus) FocusScope.of(context).requestFocus(focusNode);
+                          if (widget.autoFocus) FocusScope.of(context).requestFocus(widget.focusNode ?? focusNode);
                         });
 
                         ///forward == expand
